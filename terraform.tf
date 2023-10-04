@@ -18,6 +18,11 @@
   
 # }
 
+resource "aws_instance" "ec2" {
+  ami = "ami-03a6eaae9938c858c"
+  instance_type = "t2.micro"
+}
+
 # module "ec2module" {
 #   source = "./modules/ec2"
 #   instance_type = "m2.nano"
@@ -25,22 +30,8 @@
 # }
 
 
-module "ec2-instance" {
-  source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "5.5.0"
-  name = "single-instance"
-  instance_type          = var.insType[terraform.workspace]
-  subnet_id              = "subnet-0e3932f7a00363130"
-}
 
 
-
-variable "insType" {
-  default={
-  dev= "t2.nano"
-  default = "t2.micro"
-  }
-}
 
 
 
